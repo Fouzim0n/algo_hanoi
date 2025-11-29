@@ -1,0 +1,47 @@
+Algorithm NonRecursiveHanoiTowers;
+//NOTE: This algorithm assumes Stack type and it's functions are already implemented 
+
+var
+	tower1, tower2, tower3 : Stack;
+	n,i,steps: integer;
+
+Procedure InitializeProblem(size: integer);//Fills our first tower depending on the size of our problem
+	Begin
+		while(size>0) do
+			push(tower1,i)
+			i--
+		done;
+	End;
+
+Procedure MoveDisk(I-O\first, second: Stack());
+	Begin
+		if (empty(first) or (not empty(second) and (top(second)<top(first))) ) then //if not possible to move disk from first to second tower then do the opposite
+			push(first,top(second));
+			pop(second);
+		else //move disk from first to second tower
+			push(second,top(first));
+			pop(first);
+		Eif;
+	End;
+	
+Begin
+	writeln("Enter the number of disks for the problem: ");
+	read(n);
+	InitializeProblem(n);
+	
+	steps<- pow(2,n); //the number of steps the algorithm will take to solve the problem
+	
+	if (n mod 2 = 0) then//case of even number of disks
+		for i <- 1 to steps do
+			if (i mod 3 = 1) then moveDisk(tower1,tower2);
+			else if (i mod 3 = 2) then moveDisk(tower1,tower3);
+			else moveDisk(tower2,tower3);Eif;Eif;
+		done;
+	else//case of odd number of sisks
+		for i<- 1 to steps do
+			if (i mod 3 = 1) then moveDisk(tower1,tower3);
+			else if (i mod 3 = 2) then moveDisk(tower1,tower2);
+			else moveDisk(tower3,tower2);Eif;Eif;
+		done;
+	Eif;
+End;
